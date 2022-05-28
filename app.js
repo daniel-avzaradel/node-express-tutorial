@@ -1,11 +1,9 @@
-const secret = 'SUPER SECRET';
-const john = 'John';
-const daniel = 'Daniel';
+const names = require('./names');
+const sayHi = require('./utils');
 
-const sayHi = (name) => {
-  console.log(`Hello, ${name}`);
-};
+console.log(names);
+console.log(sayHi);
 
-sayHi(john);
-sayHi(daniel);
-sayHi(secret);
+sayHi(names.daniel);
+sayHi(names.john);
+sayHi('susan');
