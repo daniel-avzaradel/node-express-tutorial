@@ -1,9 +1,11 @@
-const amount = 20;
+const secret = 'SUPER SECRET';
+const john = 'John';
+const daniel = 'Daniel';
 
-if (amount < 10) {
-  console.log('small number');
-} else {
-  console.log('large number');
-}
+const sayHi = (name) => {
+  console.log(`Hello, ${name}`);
+};
 
-console.log(`Hello World`);
+sayHi(john);
+sayHi(daniel);
+sayHi(secret);
