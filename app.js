@@ -1,13 +1,8 @@
-const names = require('./names');
-const sayHi = require('./utils');
-const data = require('./alternative');
-require('./mind-grenade');
+const http = require('http');
 
-console.log(names);
-console.log(sayHi);
-console.log(data);
-console.log(data.items, data.singlePerson);
+const server = http.createServer((req, res) => {
+  res.write('Welcome to our server');
+  res.end();
+});
 
-sayHi(names.daniel);
-sayHi(names.john);
-sayHi('susan');
+server.listen(5000);
