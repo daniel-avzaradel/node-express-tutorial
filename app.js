@@ -1,4 +1,10 @@
 const http = require('http');
+const { readFileSync } = require('fs');
+
+const homePage = readFileSync('./node-express-course/02-express-tutorial/navbar-app/index.html');
+const homesStyles = readFileSync('./node-express-course/02-express-tutorial/navbar-app/styles.css');
+const homeImage = readFileSync('./node-express-course/02-express-tutorial/navbar-app/logo.svg');
+const homeLogic = readFileSync('./node-express-course/02-express-tutorial/navbar-app/browser-app.js');
 
 const server = http.createServer((req, res) => {
   // request method
@@ -7,7 +13,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
       'content-type': 'text/html',
     });
-    res.write('<h1>Server online</h1>');
+    res.write(homePage);
     res.end();
   }
 
@@ -17,6 +23,33 @@ const server = http.createServer((req, res) => {
       'content-type': 'text/html',
     });
     res.write('<h1>About page</h1>');
+    res.end();
+  }
+
+  // styles
+  else if (req.url === '/styles.css') {
+    res.writeHead(200, {
+      'content-type': 'text/css',
+    });
+    res.write(homesStyles);
+    res.end();
+  }
+
+  // logo svg
+  else if (req.url === '/logo.svg') {
+    res.writeHead(200, {
+      'content-type': 'image/svg+xml',
+    });
+    res.write(homeImage);
+    res.end();
+  }
+
+  // browser logic
+  else if (req.url === '/browser-app.js') {
+    res.writeHead(200, {
+      'content-type': 'text/javascript',
+    });
+    res.write(homeLogic);
     res.end();
   }
 
