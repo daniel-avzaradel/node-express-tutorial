@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/daniel-avzaradel/node-express-tutorial/issues"
   },
-  "homepage": "https://github.com/daniel-avzaradel/node-express-tutorial#readme"
+  "homepage": "https://github.com/daniel-avzaradel/node-express-tutorial#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
