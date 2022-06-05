@@ -1,14 +1,22 @@
+const express = require('express');
 const path = require('path');
+const app = express();
 
-const sep = path.sep;
-console.log(sep);
+app.use(express.static('./public'));
 
-const filePath = path.join('/content', '/subfolder', 'test.txt');
-console.log(filePath);
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './index.html'));
+});
 
-const base = path.basename(filePath);
-console.log(base);
+app.get('/about', (req, res) => {
+  res.status(200).send('about page');
+});
 
-// path.resolve
-const absolute = path.resolve(__dirname, 'content', 'subfolder', 'test.txt');
-console.log(absolute);
+app.all('*', (req, res) => {
+  console.log('user hit resource page');
+  res.status(404).send('<h1>404 PAGE NOT FOUND</h1>');
+});
+
+app.listen(5000, () => {
+  console.log(`Server running on port 5000...`);
+});
