@@ -6,7 +6,7 @@ const logger = require('./logger');
 const authorize = require('./authorize');
 
 // apply middleware to any route after '/api'
-app.use([logger, authorize]);
+// app.use([logger, authorize]);
 
 app.get('/', (req, res) => {
   res.status(200).send('Home Page');
@@ -16,12 +16,14 @@ app.get('/about', (req, res) => {
   res.status(200).send('About Page');
 });
 
-app.get('/api/products', (req, res) => {
-  res.status(200).send('Products');
+app.get('/api/products', [logger, authorize], (req, res) => {
+  console.log(req.user);
+  res.send('Products');
 });
 
-app.get('/api/items', (req, res) => {
-  res.status(200).send('Items');
+app.get('/api/items', [logger, authorize], (req, res) => {
+  console.log(req.user);
+  res.send('Items');
 });
 
 app.listen(5000, () => {
