@@ -7,11 +7,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
-  const newProducts = products.map((item) => {
-    const { id, name, image } = item;
+  const newProducts = products.map((product) => {
+    const { id, name, image } = product;
     return { id, name, image };
   });
   res.json(newProducts);
+});
+
+app.get('/api/products/:productID', (req, res) => {
+  console.log(req.params);
+  const { productID } = req.params;
+  const singleProduct = products.find((product) => product.id.toString() === productID);
+  res.json(singleProduct);
 });
 
 app.listen(5000, () => {
