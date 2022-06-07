@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 
+const tasks = require('./routes/tasks');
+app.use(express.json());
+
 // routes
-app.use('/hello', (req, res) => {
-  console.log('user hit the resource page');
-  res.status(200).send('Task Manager App');
-});
+app.use('/api/v1/tasks', tasks);
 
 // app.get('/api/v1/tasks')          - get all the tasks
 // app.post('/api/v1/tasks')         - create a new task
