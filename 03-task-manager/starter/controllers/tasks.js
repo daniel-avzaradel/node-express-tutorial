@@ -7,11 +7,11 @@ const createTask = (req, res) => {
 };
 
 const updateTask = (req, res) => {
-  res.status(200).send('Task updated successfully');
+  res.status(200).send('Task updated successfully!');
 };
 
 const getTask = (req, res) => {
-  res.status(200).send('Show single task');
+  res.status(200).send('Show single task!');
 };
 
 const deleteTask = (req, res) => {
