@@ -16,7 +16,7 @@ const getTask = (req, res) => {
 };
 
 const deleteTask = (req, res) => {
-  res.status(200).json({ status: true, message: 'Task successfully removed!' });
+  res.status(200).json({ status: true, message: 'Task successfully removed!!' });
 };
 
 module.exports = { getAllTasks, createTask, getTask, updateTask, deleteTask };
