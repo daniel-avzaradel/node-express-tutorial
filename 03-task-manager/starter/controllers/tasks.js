@@ -3,19 +3,20 @@ const getAllTasks = (req, res) => {
 };
 
 const createTask = (req, res) => {
-  res.status(201).send('Task created successfully!');
+  console.log('data received:', req.body);
+  res.status(201).json(req.body);
 };
 
 const updateTask = (req, res) => {
-  res.status(200).send('Task updated successfully!');
+  res.status(200).json({ status: true, message: 'Task updated successfully!' });
 };
 
 const getTask = (req, res) => {
-  res.status(200).send('Show single task!');
+  res.status(200).json(req.params);
 };
 
 const deleteTask = (req, res) => {
-  res.status(200).send('Task successfully removed!');
+  res.status(200).json({ status: true, message: 'Task successfully removed!' });
 };
 
 module.exports = { getAllTasks, createTask, getTask, updateTask, deleteTask };
