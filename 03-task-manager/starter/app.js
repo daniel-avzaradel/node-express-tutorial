@@ -4,6 +4,7 @@ const tasks = require('./routes/tasks');
 const connectDB = require('./db/connection');
 require('dotenv').config();
 
+// middleware
 app.use(express.json());
 
 // routes
@@ -20,10 +21,8 @@ const port = 3000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    app.listen(process.env.PORT, () => {
-      console.log('CONNECTED TO THE MONGODB');
-      console.log(`Server is running on port ${process.env.PORT}...`);
-    });
+    console.log('Connection to MongoDB was successfully established');
+    app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}...`));
   } catch (error) {
     console.log(error);
   }
