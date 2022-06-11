@@ -14,20 +14,49 @@ const createTask = async (req, res) => {
     const task = await Task.create(req.body);
     res.status(201).json({ task });
   } catch (error) {
+    console.log(err);
     res.status(500).json({ message: error });
   }
 };
 
-const updateTask = (req, res) => {
-  res.status(200).json({ status: true, message: 'Task updated successfully!' });
+const updateTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params;
+    const task = await Task.updateOne({ _id: taskID });
+    if (!task) {
+      return res.status(404).json({ message: `Task with id: ${taskID} was not found` });
+    }
+    res.status(200).json({ status: true, message: 'Task updated successfully!' });
+  } catch (err) {
+    res.status(500).json({ msg: err });
+  }
 };
 
-const getTask = (req, res) => {
-  res.status(200).json(req.params);
+const getTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params;
+    const task = await Task.findOne({ _id: taskID });
+    if (!task) {
+      return res.status(404).json({ message: `No task with id: ${taskID} found` });
+    }
+    res.status(200).json({ task });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err });
+  }
 };
 
-const deleteTask = (req, res) => {
-  res.status(200).json({ status: true, message: 'Task successfully removed!!' });
+const deleteTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params;
+    const task = await Task.findOneAndDelete({ _id: taskID });
+    if (!task) {
+      return res.status(404).json({ message: `Task with id: ${taskID} was not found` });
+    }
+    res.status(200).json({ status: true, message: 'Task successfully removed!!' });
+  } catch (err) {
+    res.status(500).json({ msg: err });
+  }
 };
 
 module.exports = { getAllTasks, createTask, getTask, updateTask, deleteTask };
