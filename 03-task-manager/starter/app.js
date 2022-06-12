@@ -15,13 +15,13 @@ app.use('/api/v1/tasks', tasks);
 
 app.use(notFound);
 app.use(errorHandler);
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     console.log('Connection to MongoDB was successfully established');
-    app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}...`));
+    app.listen(port, () => console.log(`Server is running on port ${port}...`));
   } catch (error) {
     console.log(error);
   }
